@@ -7,6 +7,12 @@
     const API_URL = ""; // it's good to factor out your url base as a constant
 
     let set = [];
+    let prev;
+    let textPrev = document.createElement("h3");
+    textPrev.innerText = "Previous Number";
+
+    let textNext = document.createElement("h3");
+    textNext.innerText = "Next Number";
     /**
      *  Add a function that will be called when the window is loaded.
      */
@@ -29,26 +35,49 @@
     // Board
 
     function printNumber() {
-        let text = id("text");
+        let container = id("curr-image");
+        let prevContainer = id("prev-image");
+
         let currSize = set.length;
         let index = Math.floor(Math.random() * currSize);
         let number = set[index];
         console.log("number is: " + number);
+
+    // <div class="carousel-item">
+    //  <img src="..." class="d-block w-100" alt="...">
+    //  </div>
         set.splice(index,1);
         console.log("index: " + index);
         console.log("set: " + set);
+
         let image = document.createElement("img");
         image.src = "images/" + number + ".png";
         image.alt = "number is " + number;
+        // image.classList.add("d-block");
+        image.classList.add("card-img-top");
 
         let download = document.createElement("a");
         download.href = "images/" + number + ".png";
         download.setAttribute("download", "number " + number);
-
         download.appendChild(image);
-        // <a href="/images/myw3schoolsimage.jpg" download>
-        text.appendChild(download);
 
+
+        let item = document.createElement("div");
+        item.classList.add("card");
+        item.appendChild(download);
+
+
+
+        if(prev) {
+            removeAllChildren(prevContainer);
+            removeAllChildren(container);
+            prevContainer.appendChild(textPrev);
+            prevContainer.appendChild(prev);
+        }
+
+        container.appendChild(textNext);
+        container.appendChild(item);
+        prev = item;
     }
 
 
