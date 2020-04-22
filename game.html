@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
-    <div class="container-lg">
+    <div class="container">
 <!--        <div class="row justify-content-md-center">-->
 <!--            <div class="col-8" id="current-image">-->
 <!--                <p id="text">-->
@@ -18,25 +18,32 @@
 <!--            </div>-->
 <!--        </div>-->
         <div class="row justify-content-center">
-            <div class="col-lg-4 justify-content-center" id="prev-image">
-                <h3 class="red"> Previous Number </h3>
-            </div>
+<!--            <div class="col-xl-12 justify-content-center">-->
 
-            <div class="col-lg-4 justify-content-center" id="curr-image">
-                <h3 class="red"> Current Number </h3>
-            </div>
-            <div class="col-2 align-content-between">
-                <button class="btn btn-outline-info btn-lg btn-block" id="button"> Click for New Number </button>
-            </div>
+                <div class="col justify-content-center" id="prev-image">
+                    <h3 class="red"> Previous Number </h3>
+                </div>
+                <div class="col justify-content-center" id="curr-image">
+                    <h3 class="red"> Current Number </h3>
+                </div>
+<!--            </div>-->
         </div>
-
         <div class="row justify-content-center">
-            <div class="col-lg-9 justify-content-center">
-                <div class="justify-content-center" id="board-container">
+            <div class="col">
+                <button class="btn btn-outline-info btn-lg" id="button"> Click for New Number </button>
+            </div>
+            <div class="col">
+                <div class="col-6" id="clockdiv">
+                    <div class="small-text" >
+                        <h3 id ="second-span">TIMER</h3>
+                    </div>
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-12 " id="board-container">
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

@@ -10,11 +10,15 @@
 
     let set = [];
     let prev;
-    let textPrev = document.createElement("h3");
+    const textPrev = document.createElement("h3");
     textPrev.innerText = "Previous Number";
 
-    let textNext = document.createElement("h3");
+    const textNext = document.createElement("h3");
     textNext.innerText = "Current Number";
+
+    let timer = null;
+    let t = 0;
+
     /**
      *  Add a function that will be called when the window is loaded.
      */
@@ -46,7 +50,7 @@
                 numberButton.type = "button";
                 numberButton.classList.add("btn");
                 numberButton.classList.add("btn-light");
-                numberButton.classList.add("btn-block");
+                // numberButton.classList.add("");
                 numberButton.id = col + (row * 10) + "";
 
                 let c = document.createElement("div");
@@ -67,41 +71,38 @@
         //         });
     }
 
-    // Board
-    // shuffle - shouldnt matter but could add....
 
+
+    // TODO: timer - 20s when start downloading
+    // TODO: shuffle - shouldnt matter but could add....
     function printNumber() {
+
         let container = id("curr-image");
         let prevContainer = id("prev-image");
 
+        // Number gen
         let currSize = set.length;
         let index = Math.floor(Math.random() * currSize);
         let number = set[index];
-        console.log("number is: " + number);
-
-        // <div class="carousel-item">
-        //  <img src="..." class="d-block w-100" alt="...">
-        //  </div>
-
         set.splice(index,1);
-        console.log("index: " + index);
-        console.log("set: " + set);
 
+        // Img set
         let image = document.createElement("img");
         image.src = "images/" + number + ".png";
         image.alt = "number is " + number;
-        // image.classList.add("d-block");
-        image.classList.add("card-img-top");
-        //image.classList.add("width = 100");
 
         let download = document.createElement("a");
         download.href = "images/" + number + ".png";
         download.setAttribute("download", "number " + number);
         download.appendChild(image);
+        download.addEventListener("click", ()=> {
+            t = 20;
+            timer = setInterval(updateClock, 1500);
+        });
 
 
         let item = document.createElement("div");
-        item.classList.add("card");
+        item.classList.add("justify-content-center");
         item.appendChild(download);
 
         if(prev) {
@@ -115,10 +116,22 @@
         container.appendChild(item);
         prev = item;
 
+        // Board Highlighting
         let numberButton = id(number);
         numberButton.classList.remove("btn-light");
         numberButton.classList.add("btn-dark");
     }
+
+    function updateClock() {
+        const secondsSpan = id("second-span");
+        secondsSpan.innerText = t;
+        if (t <= 0) {
+            clearInterval(timer);
+            secondsSpan.innerText = "TIME UP";
+        } else {
+            t--;
+        }
+    };
 
 
     /**
