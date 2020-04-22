@@ -51,7 +51,6 @@
                 numberButton.classList.add("btn");
                 numberButton.classList.add("btn-light");
                 numberButton.classList.add("btn-lg");
-                // numberButton.classList.add("");
                 numberButton.id = col + (row * 10) + "";
 
                 let c = document.createElement("div");
@@ -62,14 +61,6 @@
             }
             board.appendChild(r);
         }
-
-        // var node = document.getElementById('my-node');
-        // var btn = document.getElementById('foo');
-        // btn.onclick = function() {
-        //     domtoimage.toBlob(document.getElementById('my-node'))
-        //         .then(function(blob) {
-        //             window.saveAs(blob, 'my-node.png');
-        //         });
     }
 
 
@@ -91,6 +82,7 @@
         image.src = "images/" + number + ".png";
         image.alt = "number is " + number;
 
+        // Image for curr and timer set
         let download = document.createElement("a");
         download.href = "images/" + number + ".png";
         download.setAttribute("download", "number " + number);
@@ -105,7 +97,7 @@
 
         });
 
-
+        // Item handling
         let item = document.createElement("div");
         item.classList.add("justify-content-center");
         item.appendChild(download);
@@ -140,40 +132,6 @@
         }
     };
 
-
-    /**
-     * Steps to making an Fetch request:
-     * Step 1: Write a function to "fetch" data from a URL (possibly with query/value pairs)
-     * Step 2: Write a function to do something with the response (if successful)
-     * Step 3  Write a function to handle any response errors in a user-friendly way
-     *        (pass this function name in the catch statement for Step 1)
-     */
-    // Step 1
-    function makeRequest() {
-        let url = URL_BASE; // if no params needed in request url
-        //let url = URL_BASE + "?query0=value0"; // one query/value pair, indicated with a starting ?
-        //let url = URL_BASE + "?query0=value0&query1=value1..."; // two or more query/value pairs, joined by &
-        fetch(url)
-            .then(
-                checkStatus) // helper function provide to ensure request is successful or not
-            //.then(JSON.parse)       // uncomment if response returns JSON format instead of text
-            .then(
-                successFunction) // this is reached if checkStatus says good-to-go; you write this function
-            .catch(console
-                .log); // this is reached if error happened down the fetch chain pipeline,
-        // use console.log (for debugging) or your own error-handling
-        // function (required in some assignments)
-    }
-
-    // Step 2
-    function successFunction(responseData) {
-        // responseData is string if you didn't include JSON.parse in fetch call chain, else JSON object
-        console.log(
-            responseData); // this is a good step when you want to check that data was successfully
-        // retrieved in the fetch call chain, but remove console statements
-        // after testing.
-        // now play with your responseData! (build DOM, display messages, etc.)
-    }
 
     /* ------------------------------ Helper Functions  ------------------------------ */
     // Note: You may use these in your code, but do remember that your code should not have
