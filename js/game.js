@@ -50,6 +50,7 @@
                 numberButton.type = "button";
                 numberButton.classList.add("btn");
                 numberButton.classList.add("btn-light");
+                numberButton.classList.add("btn-lg");
                 // numberButton.classList.add("");
                 numberButton.id = col + (row * 10) + "";
 
@@ -73,7 +74,6 @@
 
 
 
-    // TODO: timer - 20s when start downloading
     // TODO: shuffle - shouldnt matter but could add....
     function printNumber() {
 
@@ -96,8 +96,13 @@
         download.setAttribute("download", "number " + number);
         download.appendChild(image);
         download.addEventListener("click", ()=> {
-            t = 20;
+            t = 14;
+            const secondsSpan = id("second-span");
+            secondsSpan.innerText = 15;
+            let sf = id("seconds-left");
+            sf.removeAttribute("hidden");
             timer = setInterval(updateClock, 1500);
+
         });
 
 
@@ -128,6 +133,8 @@
         if (t <= 0) {
             clearInterval(timer);
             secondsSpan.innerText = "TIME UP";
+            let sf = id("seconds-left");
+            sf.setAttribute("hidden", "true");
         } else {
             t--;
         }
