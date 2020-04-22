@@ -96,7 +96,8 @@
         // Image for curr and timer set
         let download = document.createElement("a");
         download.href = "images/" + number + ".png";
-        download.setAttribute("download", "number " + number);
+        download.setAttribute("download", "");
+        download.setAttribute("type", "application/octet-stream");
         download.appendChild(image);
         // download.addEventListener("click", ()=> {
         //     t = 14;
