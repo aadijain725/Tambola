@@ -28,7 +28,7 @@
         for (let i = 1; i <= 90; i++) {
             set.push(i);
         }
-        console.log(set);
+        //console.log(set);
         let button = id("button");
         button.addEventListener("click",printNumber);
         initBoard();
@@ -57,6 +57,14 @@
             }
             board.appendChild(r);
         }
+
+        // var node = document.getElementById('my-node');
+        // var btn = document.getElementById('foo');
+        // btn.onclick = function() {
+        //     domtoimage.toBlob(document.getElementById('my-node'))
+        //         .then(function(blob) {
+        //             window.saveAs(blob, 'my-node.png');
+        //         });
     }
 
     // Board
@@ -71,9 +79,10 @@
         let number = set[index];
         console.log("number is: " + number);
 
-    // <div class="carousel-item">
-    //  <img src="..." class="d-block w-100" alt="...">
-    //  </div>
+        // <div class="carousel-item">
+        //  <img src="..." class="d-block w-100" alt="...">
+        //  </div>
+
         set.splice(index,1);
         console.log("index: " + index);
         console.log("set: " + set);
@@ -95,8 +104,6 @@
         item.classList.add("card");
         item.appendChild(download);
 
-
-
         if(prev) {
             removeAllChildren(prevContainer);
             prevContainer.appendChild(textPrev);
@@ -112,8 +119,6 @@
         numberButton.classList.remove("btn-light");
         numberButton.classList.add("btn-dark");
     }
-
-
 
 
     /**
