@@ -5,6 +5,8 @@
     // MODULE GLOBAL VARIABLES, CONSTANTS, AND HELPER FUNCTIONS CAN BE PLACED
     // HERE
     const API_URL = ""; // it's good to factor out your url base as a constant
+    const WIDTH = 500;
+
 
     let set = [];
     let prev;
@@ -12,7 +14,7 @@
     textPrev.innerText = "Previous Number";
 
     let textNext = document.createElement("h3");
-    textNext.innerText = "Next Number";
+    textNext.innerText = "Current Number";
     /**
      *  Add a function that will be called when the window is loaded.
      */
@@ -29,10 +31,36 @@
         console.log(set);
         let button = id("button");
         button.addEventListener("click",printNumber);
+        initBoard();
     }
 
-    // Last number
+    function initBoard() {
+        let board = id("board-container");
+        for (let row = 0; row <= 8; row++) {
+            let r = document.createElement("div");
+            r.classList.add("row");
+            r.classList.add("justify-content-center");
+            for(let col = 1; col <= 10; col++) {
+                let numberButton = document.createElement("button");
+                numberButton.innerText = col + (row * 10) + "";
+                numberButton.type = "button";
+                numberButton.classList.add("btn");
+                numberButton.classList.add("btn-light");
+                numberButton.classList.add("btn-block");
+                numberButton.id = col + (row * 10) + "";
+
+                let c = document.createElement("div");
+                c.classList.add("col-1");
+                c.classList.add("justify-content-center");
+                c.appendChild(numberButton);
+                r.appendChild(c);
+            }
+            board.appendChild(r);
+        }
+    }
+
     // Board
+    // shuffle - shouldnt matter but could add....
 
     function printNumber() {
         let container = id("curr-image");
@@ -55,6 +83,7 @@
         image.alt = "number is " + number;
         // image.classList.add("d-block");
         image.classList.add("card-img-top");
+        //image.classList.add("width = 100");
 
         let download = document.createElement("a");
         download.href = "images/" + number + ".png";
@@ -70,15 +99,21 @@
 
         if(prev) {
             removeAllChildren(prevContainer);
-            removeAllChildren(container);
             prevContainer.appendChild(textPrev);
             prevContainer.appendChild(prev);
         }
 
+        removeAllChildren(container);
         container.appendChild(textNext);
         container.appendChild(item);
         prev = item;
+
+        let numberButton = id(number);
+        numberButton.classList.remove("btn-light");
+        numberButton.classList.add("btn-dark");
     }
+
+
 
 
     /**
