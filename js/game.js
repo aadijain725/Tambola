@@ -34,7 +34,18 @@
         }
         //console.log(set);
         let button = id("button");
-        button.addEventListener("click",printNumber);
+        button.addEventListener("click",()=>{
+            printNumber();
+            t = 20;
+            // const secondsSpan = id("second-span");
+            // secondsSpan.innerText = 15;
+
+            timer = setInterval(() =>{
+                let sf = id("seconds-left");
+                sf.removeAttribute("hidden");
+                updateClock();
+            }, 1500);
+        });
         initBoard();
     }
 
@@ -87,15 +98,14 @@
         download.href = "images/" + number + ".png";
         download.setAttribute("download", "number " + number);
         download.appendChild(image);
-        download.addEventListener("click", ()=> {
-            t = 14;
-            const secondsSpan = id("second-span");
-            secondsSpan.innerText = 15;
-            let sf = id("seconds-left");
-            sf.removeAttribute("hidden");
-            timer = setInterval(updateClock, 1500);
-
-        });
+        // download.addEventListener("click", ()=> {
+        //     t = 14;
+        //     const secondsSpan = id("second-span");
+        //     secondsSpan.innerText = 15;
+        //     let sf = id("seconds-left");
+        //     sf.removeAttribute("hidden");
+        //     timer = setInterval(updateClock, 1500);
+        // });
 
         // Item handling
         let item = document.createElement("div");
