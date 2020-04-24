@@ -1,4 +1,3 @@
-
 (function() {
     "use strict";
 
@@ -39,12 +38,13 @@
             t = 20;
             // const secondsSpan = id("second-span");
             // secondsSpan.innerText = 15;
-
-            timer = setInterval(() =>{
-                let sf = id("seconds-left");
-                sf.removeAttribute("hidden");
-                updateClock();
-            }, 1500);
+            if(!timer) {
+                timer = setInterval(() => {
+                    let sf = id("seconds-left");
+                    sf.removeAttribute("hidden");
+                    updateClock();
+                }, 1500);
+            }
         });
         initBoard();
     }
@@ -96,7 +96,7 @@
         // Image for curr and timer set
         let download = document.createElement("a");
         download.href = "images/" + number + ".png";
-        download.setAttribute("download", "");
+        download.setAttribute("download", "number" + number);
         download.setAttribute("type", "application/octet-stream");
         download.appendChild(image);
         // download.addEventListener("click", ()=> {
@@ -135,6 +135,7 @@
         secondsSpan.innerText = t;
         if (t <= 0) {
             clearInterval(timer);
+            timer = null;
             secondsSpan.innerText = "TIME UP";
             let sf = id("seconds-left");
             sf.setAttribute("hidden", "true");
