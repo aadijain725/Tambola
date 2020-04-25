@@ -93,25 +93,11 @@
         image.src = "images/" + number + ".png";
         image.alt = "number is " + number;
 
-        // Image for curr and timer set
-        let download = document.createElement("a");
-        download.href = "images/" + number + ".png";
-        download.setAttribute("download", "number" + number);
-        download.setAttribute("type", "application/octet-stream");
-        download.appendChild(image);
-        // download.addEventListener("click", ()=> {
-        //     t = 14;
-        //     const secondsSpan = id("second-span");
-        //     secondsSpan.innerText = 15;
-        //     let sf = id("seconds-left");
-        //     sf.removeAttribute("hidden");
-        //     timer = setInterval(updateClock, 1500);
-        // });
 
         // Item handling
         let item = document.createElement("div");
         item.classList.add("justify-content-center");
-        item.appendChild(download);
+        item.appendChild(image); // TODO: Changed
 
         if(prev) {
             removeAllChildren(prevContainer);
