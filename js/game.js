@@ -17,6 +17,7 @@
 
     let timer = null;
     let t = 0;
+    let gameOver = false;
 
     /**
      *  Add a function that will be called when the window is loaded.
@@ -38,7 +39,7 @@
             t = 20;
             // const secondsSpan = id("second-span");
             // secondsSpan.innerText = 15;
-            if(!timer) {
+            if(!timer && !gameOver) {
                 timer = setInterval(() => {
                     let sf = id("seconds-left");
                     sf.removeAttribute("hidden");
@@ -84,42 +85,51 @@
 
         // Number gen
         let currSize = set.length;
-        let index = Math.floor(Math.random() * currSize);
-        let number = set[index];
-        set.splice(index,1);
+        if(currSize > 0) {
+            let index = Math.floor(Math.random() * currSize);
+            let number = set[index];
+            set.splice(index, 1);
 
-        // Img set
-        let image = document.createElement("img");
-        image.src = "images/" + number + ".png";
-        image.alt = "number is " + number;
+            // Img set
+            let image = document.createElement("img");
+            image.src = "Tamb/" + number + ".jpg";
+            image.alt = "number is " + number;
 
 
-        // Item handling
-        let item = document.createElement("div");
-        item.classList.add("justify-content-center");
-        item.appendChild(image); // TODO: Changed
+            // Item handling
+            let item = document.createElement("div");
+            item.classList.add("justify-content-center");
+            item.appendChild(image); // TODO: Changed
 
-        if(prev) {
-            removeAllChildren(prevContainer);
-            prevContainer.appendChild(textPrev);
-            prevContainer.appendChild(prev);
+            if (prev) {
+                removeAllChildren(prevContainer);
+                prevContainer.appendChild(textPrev);
+                prevContainer.appendChild(prev);
+            }
+
+            removeAllChildren(container);
+            container.appendChild(textNext);
+            container.appendChild(item);
+            prev = item;
+
+            // Board Highlighting
+            let numberButton = id(number);
+            numberButton.classList.remove("btn-light");
+            numberButton.classList.add("btn-dark");
+        } else {
+            gameOver = true;
+
         }
-
-        removeAllChildren(container);
-        container.appendChild(textNext);
-        container.appendChild(item);
-        prev = item;
-
-        // Board Highlighting
-        let numberButton = id(number);
-        numberButton.classList.remove("btn-light");
-        numberButton.classList.add("btn-dark");
     }
 
     function updateClock() {
         const secondsSpan = id("second-span");
         secondsSpan.innerText = t;
-        if (t <= 0) {
+        if(gameOver) {
+            secondsSpan.innerText = "Game Over";
+            let sf = id("seconds-left");
+            sf.setAttribute("hidden", "true");
+        } else if (t <= 0) {
             clearInterval(timer);
             timer = null;
             secondsSpan.innerText = "TIME UP";
