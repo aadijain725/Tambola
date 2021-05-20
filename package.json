@@ -14,6 +14,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "deploy": "open game.html",
         "test": ""
     },
     "author": "",
