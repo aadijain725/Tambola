@@ -1,0 +1,8 @@
+{
+    "homepage": "https://aadijain725.github.io/Tambola/",
+    "dependencies": {
+        "gh-pages": "^3.1.0"
+    },
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"  
+}
